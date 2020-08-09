@@ -32,3 +32,5 @@ set smartcase
 
 " statusline
 set laststatus=1
+
+filetype plugin indent on
