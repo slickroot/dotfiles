@@ -1,4 +1,5 @@
 set encoding=utf8
+filetype plugin indent on
 
 " colors
 syntax enable
@@ -6,6 +7,7 @@ colorscheme desert
 
 " ui
 set noshowmode
+set noshowcmd
 set wildmenu
 set wildmode=longest:full,full
 
@@ -26,11 +28,14 @@ set shiftwidth=4
 set expandtab
 
 " search
-set hlsearch
+set nohlsearch
 set ignorecase
 set smartcase
 
 " statusline
 set laststatus=1
 
-filetype plugin indent on
+" leader
+let mapleader = ","
+
+source ~/.vim/marogic.vim
