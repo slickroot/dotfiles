@@ -3,7 +3,6 @@ filetype plugin indent on
 
 " colors
 syntax enable
-colorscheme desert
 
 " ui
 set noshowmode
