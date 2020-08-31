@@ -19,53 +19,42 @@ local taglist_buttons = gears.table.join(
     awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
 )
 
+local lemon = {}
+lemon["full"] = os.getenv("HOME") .. '/.config/awesome/icons/orange.svg'
+lemon["empty"] = os.getenv("HOME") .. '/.config/awesome/icons/orange_empty.svg'
 
 local taglist = function(s)
     return awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
         layout   = {
-            spacing = 2,
+            spacing = 8,
             layout  = wibox.layout.fixed.horizontal
         },
         widget_template = {
             {
                 {
-                    {
-                        {
-                            id     = 'icon_role',
-                            forced_height = 30,
-                            forced_width = 30,
-                            widget = wibox.widget.imagebox,
-                        },
-                        top = 10,
-                        widget  = wibox.container.margin,
-                    },
-                    layout = wibox.layout.fixed.horizontal,
+                    id     = 'icon_role',
+                    widget = wibox.widget.imagebox,
                 },
-                right = 8,
+                margins = { top = 10, bottom = 10 },
                 widget = wibox.container.margin
             },
-            id     = 'background_role',
             widget = wibox.container.background,
             -- Add support for hover colors and an index label
             create_callback = function(self, c3, index, objects) 
-                local current = os.getenv("HOME") .. '/.config/awesome/icons/orange.svg'
-                local empty = os.getenv("HOME") .. '/.config/awesome/icons/orange_empty.svg'
                 if c3.selected then
-                    self:get_children_by_id('icon_role')[1].image = current
+                    self:get_children_by_id('icon_role')[1].image = lemon["full"]
                 else
-                    self:get_children_by_id('icon_role')[1].image = empty
+                    self:get_children_by_id('icon_role')[1].image = lemon["empty"]
                 end
 
             end,
             update_callback = function(self, c3, index, objects) 
-                local current = os.getenv("HOME") .. '/.config/awesome/icons/orange.svg'
-                local empty = os.getenv("HOME") .. '/.config/awesome/icons/orange_empty.svg'
                 if c3.selected then
-                    self:get_children_by_id('icon_role')[1].image = current
+                    self:get_children_by_id('icon_role')[1].image = lemon["full"]
                 else
-                    self:get_children_by_id('icon_role')[1].image = empty
+                    self:get_children_by_id('icon_role')[1].image = lemon["empty"]
                 end
             end,
         },

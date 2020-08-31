@@ -37,11 +37,10 @@ editor_cmd = terminal .. " -e " .. editor
 modkey = "Mod4"
 
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_configuration_dir() .. "/themes/default/theme.lua")
+beautiful.init("~/.config/awesome/themes/default/theme.lua")
 
 -- Main menu
 require("mainmenu")
-
 
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -75,7 +74,23 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
-require("wibar")
+require("desktop")
 require("keys")
 require("rules")
 require("signals")
+-- notifications
+require("bells")
+
+p = require("dbus_proxy")
+proxy = p.Proxy:new({
+    bus = p.Bus.SYSTEM,
+    name = "org.freedesktop.UPower",
+    interface = "org.freedesktop.DBus.Properties",
+    path = "/org/freedesktop/UPower/devices/battery_BAT0"
+})
+
+proxy:connect_signal(function(_, something, more)
+    gears.debug.dump(something)
+    gears.debug.dump(more)
+    print("got something")
+end, "PropertiesChanged")
