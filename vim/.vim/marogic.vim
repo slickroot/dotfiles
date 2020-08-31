@@ -1,6 +1,6 @@
 " limelight
-let g:limelight_conceal_guifg = 'DarkBlue'
-let g:limelight_conceal_ctermfg = 'DarkBlue'
+let g:limelight_conceal_guifg = 'Gray'
+let g:limelight_conceal_ctermfg = 'Gray'
 let g:limelight_default_coefficient = 0.1
 
 " Goyo
@@ -20,6 +20,10 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " Vim hybrid
 set background=dark
-let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-colorscheme hybrid
+" let g:hybrid_custom_term_colors = 1
+" let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+" colorscheme hybrid
+
+" Autocommands
+" special treat, save xresources colors to kitty colors
+autocmd BufWritePost ~/.Xresources.d/colors :silent exec "!xtokitty"

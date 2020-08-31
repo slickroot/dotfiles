@@ -37,4 +37,6 @@ set laststatus=1
 " leader
 let mapleader = ","
 
+" colorscheme
+colorscheme desert
 source ~/.vim/marogic.vim
