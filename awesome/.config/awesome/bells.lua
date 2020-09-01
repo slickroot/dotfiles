@@ -1,16 +1,35 @@
 local gears = require("gears")
 local wibox = require("wibox")
 local awful = require("awful")
-local abutton = require("awful.button")
-local gtable = require("gears.table")
-local menubar = require("menubar")
 local beautiful = require("beautiful")
-local hotkeys_popup = require("awful.hotkeys_popup")
 local textbox = require("wibox.widget.textbox")
 local naughty = require("naughty")
 local xrdb = beautiful.xresources.get_current_theme()
+local ruled = require("ruled")
+local slick = require("slick")
+
+ruled.notification.connect_signal('request::rules', function()
+    -- Default icon
+    ruled.notification.append_rule {
+        rule        = { },
+        properties  = { icon = "" }
+    }
+
+    -- notifications icon rules
+    ruled.notification.append_rule {
+        rule        = { app_name = 'screenshot' },
+        properties  = { icon = "" }
+    }
+end)
+
+-- shortcut
+local icon_size = beautiful.notification_icon_size
 
 local build_notification_box = function(n)
+    local margin = beautiful.notification_margin
+    local padding = 10
+
+
 	local actions_template = {
 		{
 			{
@@ -66,8 +85,7 @@ local build_notification_box = function(n)
 
 	local notification_box = naughty.layout.box{
 		notification = n,
-		offset = { x = dpi(5) },
-		type = "notification",
+		type = "dock",
 		widget_template = {
 			{
 				{
@@ -76,14 +94,11 @@ local build_notification_box = function(n)
 					notification_actions,
 					layout = wibox.layout.align.vertical
 				},
-				margins = {
-					top = beautiful.notification_margin,
-					bottom = beautiful.notification_margin,
-					right = beautiful.notification_margin,
-					left = beautiful.notification_margin / 2 + dpi(30)
-				},
+				margins = { bottom = margin, top = margin, right = margin },
+                left = margin / 2 + icon_size / 2,
 				widget = wibox.container.margin
 			},
+            shape = slick.shapes.notification(icon_size, margin),
 			bg = xrdb.background .. "EE",
 			widget = wibox.container.background
 		}
@@ -96,14 +111,14 @@ local build_notification_icon = function(n)
 	local notification_icon_widget = {
 		{
 			{
-				markup = '<span color="' .. xrdb.color2 .. '"></span>',
+				markup = '<span color="' .. xrdb.color2 .. '">'.. n.icon ..'</span>',
 				align = "center",
 				font = "awesome 16",
 				widget = textbox
 			},
 			bg = xrdb.background,
-			forced_width = dpi(60),
-			forced_height = dpi(60),
+			forced_width = icon_size,
+			forced_height = icon_size,
 			shape = gears.shape.circle,
 			widget = wibox.container.background
 		},
@@ -113,8 +128,8 @@ local build_notification_icon = function(n)
 
 	local notification_icon = awful.popup{
 		ontop = true,
-		height = dpi(60),
-		width = dpi(60),
+		height = icon_size,
+		width = icon_size,
 		bg = "#00000000",
 		visible = true,
 		type = "dock",
@@ -132,7 +147,7 @@ naughty.connect_signal("request::display", function(n)
 	awful.placement.left(notification_icon, {
 		parent = notification_box,
         attach = true,
-		offset = { x = -dpi(30) }
+		offset = { x = - icon_size / 2 }
 	})
 
 	n:connect_signal("destroyed", function()

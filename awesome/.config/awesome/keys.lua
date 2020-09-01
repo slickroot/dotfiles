@@ -36,6 +36,7 @@ globalkeys = gears.table.join(
                         name = 'Ok'
                     }
                 },
+                app_name = 'screenshot',
                 message = "screenshot taken"
             }
 
