@@ -1,7 +1,13 @@
 local wibox = require("wibox")
+local naughty = require("naughty")
 local gears = require("gears")
 local awful = require("awful")
 local beautiful = require("beautiful")
+local xrdb = beautiful.xresources.get_current_theme()
+
+local capi = {
+    mouse = mouse
+}
 
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
@@ -17,55 +23,107 @@ client.connect_signal("manage", function (c)
     end
 end)
 
--- Add a titlebar if titlebars_enabled is set to true in the rules.
-client.connect_signal("request::titlebars", function(c)
-    local top_titlebar = awful.titlebar(c, {
-        size    = 40,
-        bg_normal = {
-                        type = "linear",
-                        to = {0, 0},
-                        from = {-1, 40},
-                        stops = {{0, "#A9D245"}, {1, "#81A428"}}
-                    },
-        bg_focus = {
-                        type = "linear",
-                        to = {0, 0},
-                        from = {-1, 40},
-                        stops = {{0, "#A9D245"}, {1, "#81A428"}}
-                    },
-    })
-
-    -- buttons for the titlebar
-    local buttons = gears.table.join(
-        awful.button({ }, 1, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.move(c)
-        end),
-        awful.button({ }, 3, function()
-            c:emit_signal("request::activate", "titlebar", {raise = true})
-            awful.mouse.client.resize(c)
-        end)
-    )
-
-    top_titlebar : setup {
-        { -- Left
-            layout  = wibox.layout.fixed.horizontal
-        },
-        { -- Middle
-            { -- Title
-                align  = "center",
-                widget = awful.titlebar.widget.titlewidget(c)
-            },
-            buttons = buttons,
-            layout  = wibox.layout.flex.horizontal
-        },
-        layout = wibox.layout.align.horizontal
-    }
-end)
-
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
 
+
+-- {{{ Error handling
+-- Check if awesome encountered an error during startup and fell back to
+-- another config (This code will only ever execute for the fallback config)
+if awesome.startup_errors then
+    naughty.notify({ preset = naughty.config.presets.critical,
+                     title = "Oops, there were errors during startup!",
+                     text = awesome.startup_errors })
+end
+
+-- Handle runtime errors after startup
+do
+    local in_error = false
+    awesome.connect_signal("debug::error", function (err)
+        -- Make sure we don't go into an endless error loop
+        if in_error then return end
+        in_error = true
+
+        naughty.notify({ preset = naughty.config.presets.critical,
+                         title = "Upsie, an error happened!",
+                         text = tostring(err) })
+        in_error = false
+    end)
+end
 -- }}}
+
+client.connect_signal("request::titlebars", function(c)
+    -- buttons for the titlebar
+    local buttons = {
+        awful.button({ }, 1, function()
+            c:activate { context = "titlebar", action = "mouse_move"  }
+        end),
+        awful.button({ }, 3, function()
+            c:activate { context = "titlebar", action = "mouse_resize"}
+        end),
+    }
+
+    local maximize_button = wibox.widget {
+        markup = '<span color="' .. xrdb.color6 .. 'AA' .. '"></span>',
+        buttons = {
+            awful.button({ }, 1, function()
+                c.maximized = not c.maximized
+            end),
+        },
+        font = "awesome 16",
+        widget = wibox.widget.textbox
+    }
+
+    maximize_button:connect_signal('mouse::enter', function(w) 
+        w.markup = '<span color="' .. xrdb.color6 .. '"></span>'
+    end)
+
+    maximize_button:connect_signal('mouse::leave', function(w) 
+        w.markup = '<span color="' .. xrdb.color6 .. 'AA' .. '"></span>'
+    end)
+
+    local close_button = wibox.widget {
+        markup = '<span color="' .. xrdb.color4 .. 'AA' .. '"></span>',
+        buttons = {
+            awful.button({ }, 1, function()
+                c:kill()
+            end),
+        },
+        font = "awesome 20",
+        widget = wibox.widget.textbox
+    }
+
+    close_button:connect_signal('mouse::enter', function(w) 
+        w.markup = '<span color="' .. xrdb.color4 .. '"></span>'
+    end)
+
+    close_button:connect_signal('mouse::leave', function(w) 
+        w.markup = '<span color="' .. xrdb.color4 .. 'AA' .. '"></span>'
+    end)
+
+    awful.titlebar(c, { size = beautiful.titlebar_size }).widget = {
+        {
+            nil,
+            {
+                buttons = buttons,
+                layout = wibox.layout.fixed.horizontal()
+            },
+            { -- Right
+                {
+                    markup = '<span color="' .. xrdb.color5 .. '"></span>',
+                    font = "awesome 20",
+                    widget = wibox.widget.textbox
+                },
+                maximize_button,
+                close_button,
+                spacing = 18,
+                layout = wibox.layout.fixed.horizontal()
+            },
+            layout = wibox.layout.align.horizontal
+        },
+        right = 15,
+        widget = wibox.container.margin
+    }
+end)

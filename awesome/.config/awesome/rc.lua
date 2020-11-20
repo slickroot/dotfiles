@@ -6,22 +6,12 @@ pcall(require, "luarocks.loader")
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
--- Widget and layout library
 local wibox = require("wibox")
--- Theme handling library
 local beautiful = require("beautiful")
--- Notification library
-local naughty = require("naughty")
 local menubar = require("menubar")
-local hotkeys_popup = require("awful.hotkeys_popup")
--- Enable hotkeys help widget for VIM and other apps
--- when client with a matching name is opened:
 dpi = beautiful.xresources.apply_dpi
 
 require("awful.hotkeys_popup.keys")
-
--- Error handling
-require("error")
 
 -- Variable definitions
 -- This is used later as the default terminal and editor to run.
@@ -39,8 +29,6 @@ modkey = "Mod4"
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init("~/.config/awesome/themes/default/theme.lua")
 
--- Main menu
-require("mainmenu")
 
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
@@ -74,7 +62,26 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
-require("desktop")
+local function set_wallpaper(s)
+    -- Wallpaper
+    if beautiful.wallpaper then
+        local wallpaper = beautiful.wallpaper
+        -- If wallpaper is a function, call it with the screen
+        if type(wallpaper) == "function" then
+            wallpaper = wallpaper(s)
+        end
+        gears.wallpaper.maximized(wallpaper, s, true)
+    end
+end
+
+-- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
+screen.connect_signal("property::geometry", set_wallpaper)
+
+awful.screen.connect_for_each_screen(function(s)
+    set_wallpaper(s)
+    awful.tag({ "1", "2", "3", "4" }, s, awful.layout.layouts[1])
+end)
+
 require("keys")
 require("rules")
 require("signals")
@@ -94,3 +101,5 @@ proxy:connect_signal(function(_, something, more)
     gears.debug.dump(more)
     print("got something")
 end, "PropertiesChanged")
+
+-- require("slick.sidebar")

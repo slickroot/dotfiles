@@ -99,7 +99,7 @@ local build_notification_box = function(n)
 				widget = wibox.container.margin
 			},
             shape = slick.shapes.notification(icon_size, margin),
-			bg = xrdb.background .. "EE",
+			bg = xrdb.color0,
 			widget = wibox.container.background
 		}
 	}

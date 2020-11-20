@@ -12,9 +12,6 @@ local xrdb = beautiful.xresources.get_current_theme()
 -- {{{ Mouse bindings
 root.buttons(
 	gears.table.join(
-		awful.button({}, 3, function()
-			mymainmenu:toggle()
-		end),
 		awful.button({}, 4, awful.tag.viewnext),
 		awful.button({}, 5, awful.tag.viewprev)
 	)
@@ -47,10 +44,6 @@ globalkeys = gears.table.join(
 		}
 	),
 -- Menubar
-	awful.key({ modkey }, "s", hotkeys_popup.show_help, {
-		description = "show help",
-		group = "awesome"
-	}),
 	awful.key({ modkey }, "Left", awful.tag.viewprev, {
 		description = "view previous",
 		group = "tag"
@@ -348,7 +341,7 @@ clientkeys = gears.table.join(
 		}
 	),
 	awful.key(
-		{ modkey, "Shift" },
+		{ modkey },
 		"c",
 		function(c)
 			c:kill()

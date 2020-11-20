@@ -1,3 +1,4 @@
 return {
-    shapes = require("slick.shapes")
+    shapes = require("slick.shapes"),
+    container = require("slick.container")
 }

@@ -22,14 +22,18 @@ theme.wibar_bg = xrdb.background
 -- Notifications
 theme.notification_bg = xrdb.background.."00"
 theme.notification_fg = xrdb.foreground
-theme.notification_margin = dpi(15)
-theme.notification_title_font = "sans 14"
-theme.notification_icon_size = dpi(60)
-theme.notification_font = "sans 12"
+theme.notification_margin = dpi(12)
+theme.notification_title_font = "sans 12"
+theme.notification_icon_size = dpi(55)
+theme.notification_font = "sans 10"
 theme.notification_border_width = dpi(0)
 theme.notification_spacing = dpi(15)
 
 -- Font
 theme.font = "sans"
+
+-- Titlebar
+theme.titlebar_bg = xrdb.color0
+theme.titlebar_size = dpi(45)
 
 return theme
