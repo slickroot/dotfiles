@@ -66,7 +66,7 @@ client.connect_signal("request::titlebars", function(c)
     }
 
     local maximize_button = wibox.widget {
-        markup = '<span color="' .. xrdb.color6 .. 'AA' .. '"></span>',
+        markup = '<span color="' .. xrdb.color6 .. '44' .. '"></span>',
         buttons = {
             awful.button({ }, 1, function()
                 c.maximized = not c.maximized
@@ -77,15 +77,15 @@ client.connect_signal("request::titlebars", function(c)
     }
 
     maximize_button:connect_signal('mouse::enter', function(w) 
-        w.markup = '<span color="' .. xrdb.color6 .. '"></span>'
+        w.markup = '<span color="' .. xrdb.color6 .. '"></span>'
     end)
 
     maximize_button:connect_signal('mouse::leave', function(w) 
-        w.markup = '<span color="' .. xrdb.color6 .. 'AA' .. '"></span>'
+        w.markup = '<span color="' .. xrdb.color6 .. '44' .. '"></span>'
     end)
 
     local close_button = wibox.widget {
-        markup = '<span color="' .. xrdb.color4 .. 'AA' .. '"></span>',
+        markup = '<span color="' .. xrdb.color4 .. '44' .. '"></span>',
         buttons = {
             awful.button({ }, 1, function()
                 c:kill()
@@ -100,7 +100,7 @@ client.connect_signal("request::titlebars", function(c)
     end)
 
     close_button:connect_signal('mouse::leave', function(w) 
-        w.markup = '<span color="' .. xrdb.color4 .. 'AA' .. '"></span>'
+        w.markup = '<span color="' .. xrdb.color4 .. '44' .. '"></span>'
     end)
 
     awful.titlebar(c, { size = beautiful.titlebar_size }).widget = {
@@ -111,11 +111,6 @@ client.connect_signal("request::titlebars", function(c)
                 layout = wibox.layout.fixed.horizontal()
             },
             { -- Right
-                {
-                    markup = '<span color="' .. xrdb.color5 .. '"></span>',
-                    font = "awesome 20",
-                    widget = wibox.widget.textbox
-                },
                 maximize_button,
                 close_button,
                 spacing = 18,
