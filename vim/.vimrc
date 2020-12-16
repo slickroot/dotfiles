@@ -3,6 +3,7 @@ filetype plugin indent on
 
 " colors
 syntax enable
+colorscheme lena
 
 " ui
 set noshowmode
@@ -37,6 +38,16 @@ set laststatus=1
 " leader
 let mapleader = ","
 
-" colorscheme
-colorscheme desert
+" line numbers
+set relativenumber
+highlight LineNr ctermfg=DarkGrey
+
+" Scrolling
+nnoremap J 2<c-e>
+nnoremap K 2<c-y>
+
+" Close current buffer
+nnoremap <Leader>c :bd<CR>
+
+" Marouane magic
 source ~/.vim/marogic.vim

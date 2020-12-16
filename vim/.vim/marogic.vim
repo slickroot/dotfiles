@@ -1,3 +1,6 @@
+" ALE
+nmap <Leader>a :ALEFix<CR>
+
 " limelight
 let g:limelight_conceal_guifg = 'Gray'
 let g:limelight_conceal_ctermfg = 'Gray'
@@ -18,12 +21,10 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
-" Vim hybrid
-set background=dark
-" let g:hybrid_custom_term_colors = 1
-" let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-" colorscheme hybrid
-
 " Autocommands
 " special treat, save xresources colors to kitty colors
 autocmd BufWritePost ~/.Xresources.d/colors :silent exec "!xtokitty"
+
+" map fuzzy search
+nnoremap <Leader>o :GFiles<CR>
+nnoremap <Leader>o :GFiles!<CR>
