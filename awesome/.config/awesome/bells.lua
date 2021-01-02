@@ -11,7 +11,7 @@ local slick = require("slick")
 ruled.notification.connect_signal('request::rules', function()
     -- Default icon
     ruled.notification.append_rule {
-        rule        = { },
+        rule        = { urgency = 'normal' },
         properties  = { icon = "" }
     }
 
@@ -73,7 +73,7 @@ local build_notification_box = function(n)
 	}
 
 	local notification_message = {
-		align = "center",
+		align = "left",
 		widget = naughty.widget.message
 	}
 
@@ -83,26 +83,33 @@ local build_notification_box = function(n)
 		widget = wibox.container.margin
 	}
 
-	local notification_box = naughty.layout.box{
-		notification = n,
-		type = "dock",
-		widget_template = {
-			{
-				{
-					notification_title,
-					notification_message,
-					notification_actions,
-					layout = wibox.layout.align.vertical
-				},
-				margins = { bottom = margin, top = margin, right = margin },
-                left = margin / 2 + icon_size / 2,
-				widget = wibox.container.margin
-			},
-            shape = slick.shapes.notification(icon_size, margin),
-			bg = xrdb.color0,
-			widget = wibox.container.background
-		}
-	}
+    local notification_box = naughty.layout.box{
+        notification = n,
+        type = "dock",
+        widget_template = {
+            {
+                {
+                    {
+                        notification_title,
+                        notification_message,
+                        notification_actions,
+                        spacing = dpi(8),
+                        layout = wibox.layout.fixed.vertical
+                    },
+                    margins = { bottom = margin, top = margin, right = margin },
+                    left = 2 * margin / 3 + icon_size / 2,
+                    widget = wibox.container.margin
+                },
+                shape = slick.shapes.notification(icon_size, margin),
+                bg = xrdb.color0,
+                widget = wibox.container.background
+            },
+            strategy = "max",
+            width = dpi(500),
+            height = dpi(80),
+            widget = wibox.container.constraint
+        }
+    }
 
 	return notification_box
 end
@@ -113,7 +120,7 @@ local build_notification_icon = function(n)
 			{
 				markup = '<span color="' .. xrdb.color2 .. '">'.. n.icon ..'</span>',
 				align = "center",
-				font = "awesome 16",
+				font = beautiful.notification_icon_font,
 				widget = textbox
 			},
 			bg = xrdb.background,
