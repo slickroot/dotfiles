@@ -79,7 +79,26 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
-    awful.tag({ "1", "2", "3", "4" }, s, awful.layout.layouts[1])
+    awful.tag.add("1", {
+            layout             = awful.layout.suit.max,
+            master_fill_policy = "master_width_factor",
+            gap_single_client  = true,
+            gap                = 20,
+            screen             = s,
+            selected           = true,
+        })
+    awful.tag.add("2", {
+            layout = awful.layout.suit.tile,
+            screen = s
+        })
+    awful.tag.add("3", {
+            layout = awful.layout.suit.tile,
+            screen = s
+        })
+    awful.tag.add("4", {
+            layout = awful.layout.suit.floating,
+            screen = s
+        })
 end)
 
 require("keys")
