@@ -9,6 +9,13 @@ local ruled = require("ruled")
 local slick = require("slick")
 
 ruled.notification.connect_signal('request::rules', function()
+    ruled.notification.append_rule {
+        rule       = { },
+        properties = {
+            screen           = awful.screen.preferred,
+            implicit_timeout = 5,
+        }
+    }
     -- Default icon
     ruled.notification.append_rule {
         rule        = { urgency = 'normal' },
