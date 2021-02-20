@@ -22,21 +22,9 @@ root.buttons(
 globalkeys = gears.table.join(
 -- Screenshot
 	awful.key(
-		{ modkey, "Control" },
-		"p",
+		{ modkey, "Control" }, "p",
 		function()
-            local notif = naughty.notification {
-                timeout = 0,
-                title = "Click!",
-                actions = { 
-                    naughty.action {
-                        name = 'Ok'
-                    }
-                },
-                app_name = 'screenshot',
-                message = "screenshot taken"
-            }
-
+            awful.spawn("screenshot")
 		end,
 		{
 			description = "focus next by index",
