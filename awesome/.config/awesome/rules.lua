@@ -68,6 +68,9 @@ awful.rules.rules = {
 
      { rule = { class = "Upwork" },
        properties = { screen = 1, tag = "4" } },
+
+     { rule = { class = "Google-chrome" },
+       properties = { screen = 1, tag = "2" } },
 }
 -- }}}
 
