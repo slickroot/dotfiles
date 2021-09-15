@@ -118,18 +118,4 @@ require("signals")
 -- notifications
 require("bells")
 
-p = require("dbus_proxy")
-proxy = p.Proxy:new({
-    bus = p.Bus.SYSTEM,
-    name = "org.freedesktop.UPower",
-    interface = "org.freedesktop.DBus.Properties",
-    path = "/org/freedesktop/UPower/devices/battery_BAT0"
-})
-
-proxy:connect_signal(function(_, something, more)
-    gears.debug.dump(something)
-    gears.debug.dump(more)
-    print("got something")
-end, "PropertiesChanged")
-
 -- require("slick.sidebar")
