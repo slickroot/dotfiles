@@ -6,7 +6,6 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 
-*.cursorColor:  #e0f2ec
 Xcursor.size: 32
 
 XTerm.vt100.faceName: monospace:size=16:antialias=false
