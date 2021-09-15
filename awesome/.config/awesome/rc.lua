@@ -62,6 +62,17 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- Keyboard map indicator and switcher
 mykeyboardlayout = awful.widget.keyboardlayout()
 
+local wb = awful.wibar { position = 'top', bg = beautiful.wibar_bg }
+local textclock = wibox.widget.textclock('%H:%M')
+wb:setup {
+	layout = wibox.layout.align.horizontal,
+	{
+		textclock,
+		left = 10,
+		widget = wibox.container.margin,
+	},
+}
+
 local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then

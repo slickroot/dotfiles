@@ -17,7 +17,7 @@ theme.useless_gap   = dpi(15)
 theme.wibar_height = 50
 theme.wibar_width = 1600
 theme.wibar_bg = gears.color.transparent
-theme.wibar_bg = xrdb.background
+-- theme.wibar_bg = xrdb.background
 
 -- Notifications
 theme.notification_bg = xrdb.background.."00"
