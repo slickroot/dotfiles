@@ -1,6 +1,10 @@
 " ALE
 nmap <Leader>a :ALEFix<CR>
 
+" Black
+nmap <Leader>b :Black<CR>
+" autocmd BufWritePre *.py execute ':Black'
+
 " limelight
 let g:limelight_conceal_guifg = 'Gray'
 let g:limelight_conceal_ctermfg = 'Gray'
@@ -28,3 +32,6 @@ autocmd BufWritePost ~/.Xresources.d/colors :silent exec "!xtokitty"
 " map fuzzy search
 nnoremap <Leader>o :GFiles<CR>
 nnoremap <Leader>o :GFiles!<CR>
+
+" Vue
+let g:vim_vue_plugin_load_full_syntax = 1

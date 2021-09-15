@@ -1,3 +1,5 @@
+packloadall
+
 set encoding=utf8
 filetype plugin indent on
 
@@ -25,7 +27,7 @@ set autoindent
 set smartindent
 set tabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 
 " search
 set nohlsearch
@@ -39,12 +41,12 @@ set laststatus=1
 let mapleader = ","
 
 " line numbers
-set relativenumber
+set number relativenumber
 highlight LineNr ctermfg=DarkGrey
 
 " Scrolling
-nnoremap J 2<c-e>
-nnoremap K 2<c-y>
+nnoremap J 5<c-e>
+nnoremap K 5<c-y>
 
 " Close current buffer
 nnoremap <Leader>c :bd<CR>
