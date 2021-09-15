@@ -1,40 +1,15 @@
-# Customize here https://bit.ly/2DBC2sD
+! These might also be useful depending on your monitor and personal preference:
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
 
-# special
-*.foreground:   #e0f2ec
-*.background:   #15304A
-cursor  #e0f2ec
+*.cursorColor:  #e0f2ec
+Xcursor.size: 32
 
-# background_opacity 0.95
+XTerm.vt100.faceName: monospace:size=16:antialias=false
+XTerm.vt100.scaleHeight: 1.2
 
-# black
-*.color0:       #1A181B
-*.color8:       #49434C
-
-# red
-*.color1:       #E95D8E
-*.color9:       #F5B7CD
-
-# green
-*.color2:       #63dc17
-*.color10:      #58A22A
-
-# yellow
-*.color3:       #FFD68B
-*.color11:      #FFDB99
-
-# blue
-*.color4:       #44CFCB
-*.color12:      #7DDEDA
-
-# magenta (or orange)
-*.color13:      #FFDBB5
-*.color5:       #FFB05C
-
-# cyan
-*.color6:       #2D82B7
-*.color14:      #7CB9DF
-
-# white
-*.color7:       #e0f2ec
-*.color15:      #f0f8f3
+#include ".Xresources.d/colors"
