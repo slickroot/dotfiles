@@ -19,13 +19,19 @@ ruled.notification.connect_signal('request::rules', function()
     -- Default icon
     ruled.notification.append_rule {
         rule        = { urgency = 'normal' },
-        properties  = { icon = "" }
+        properties  = { icon = "", icon_color = xrdb.color8 }
+    }
+
+    -- notifications icon rules
+    ruled.notification.append_rule {
+        rule        = { app_name = 'battery' },
+        properties  = { icon = "" , icon_color = xrdb.color9 }
     }
 
     -- notifications icon rules
     ruled.notification.append_rule {
         rule        = { app_name = 'screenshot' },
-        properties  = { icon = "" }
+        properties  = { icon = "", icon_color = xrdb.color2 }
     }
 end)
 
@@ -125,7 +131,7 @@ local build_notification_icon = function(n)
 	local notification_icon_widget = {
 		{
 			{
-				markup = '<span color="' .. xrdb.color2 .. '">'.. n.icon ..'</span>',
+				markup = '<span color="' .. n.icon_color .. '">'.. n.icon ..'</span>',
 				align = "center",
 				font = beautiful.notification_icon_font,
 				widget = textbox

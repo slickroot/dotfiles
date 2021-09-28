@@ -3,6 +3,7 @@
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
+local naughty = require("naughty")
 local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
@@ -118,4 +119,9 @@ require("signals")
 -- notifications
 require("bells")
 
+awful.spawn.with_line_callback('dbusbattery', {
+    stdout = function(line)
+        naughty.notification { title = "Battery", message = line.."%", app_name = "battery" }
+    end
+})
 -- require("slick.sidebar")
