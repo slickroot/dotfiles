@@ -22,6 +22,12 @@ ruled.notification.connect_signal('request::rules', function()
         properties  = { icon = "", icon_color = xrdb.color8 }
     }
 
+	-- notifications from google calendar
+    ruled.notification.append_rule {
+        rule        = { message = 'calendar.google.com' },
+        properties  = { icon = "", icon_color = xrdb.color2, message = 'From calendar' }
+    }
+
     -- notifications icon rules
     ruled.notification.append_rule {
         rule        = { app_name = 'battery' },

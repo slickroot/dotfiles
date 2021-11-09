@@ -121,7 +121,10 @@ require("bells")
 
 awful.spawn.with_line_callback('dbusbattery', {
     stdout = function(line)
-        naughty.notification { title = "Battery", message = line.."%", app_name = "battery" }
+		percentage = tonumber(line)
+		if percentage < 15 then 
+			naughty.notification { title = "Attention!", message = "Battery level is " .. line, app_name = "battery", timeout = 0 } 
+		end
     end
 })
 -- require("slick.sidebar")
