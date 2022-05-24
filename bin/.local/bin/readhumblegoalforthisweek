@@ -1,0 +1,5 @@
+cat $HOME/thehumblingexperienceofgettingmyacttogether/week008.txt
+echo "Are you on it? (Y/n)"
+read
+clear
+zsh

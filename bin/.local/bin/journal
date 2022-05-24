@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+DIRECTORY=$HOME/.journal
+ls $DIRECTORY -ltC | awk '{print $1}' | tr -dC '0-9' | awk '{printf "%03d\n", $1 + 1}' | read INDEX
+ENTRY="entry${INDEX}.txt"
+vim $ENTRY
+chmod -w $ENTRY
+echo "Good!"
