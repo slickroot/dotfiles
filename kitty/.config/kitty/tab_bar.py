@@ -1,4 +1,5 @@
 import datetime
+import random
 
 from kitty.fast_data_types import Screen
 from kitty.rgb import Color
@@ -69,7 +70,8 @@ def draw_tab(
     is_last: bool,
     extra_data: ExtraData,
 ) -> int:
-    _draw_icon(screen, index, symbol=" ❤️  ")
+    hearts = (" 💙  ", " 💚  ", " 💛  ", " 💜  ", " ❤️ ")
+    _draw_icon(screen, index, symbol=random.choice(hearts))
     _draw_left_status(
         draw_data,
         screen,
