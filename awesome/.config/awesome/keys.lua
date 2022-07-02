@@ -20,14 +20,35 @@ root.buttons(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
--- Screenshot
+-- Recording
 	awful.key(
-		{ modkey, "Control" }, "p",
+		{ modkey, "Control" }, "4",
 		function()
-            awful.spawn("screenshot")
+      awful.spawn("record")
 		end,
 		{
-			description = "focus next by index",
+			description = "Record my screen",
+			group = "client"
+		}
+	),
+	awful.key(
+		{ modkey, "Control" }, "s",
+		function()
+            awful.spawn("record -k")
+		end,
+    {
+      description = "Stop recording",
+      group = "client"
+    }
+	),
+-- Screenshot
+	awful.key(
+		{ modkey, "Control" }, "3",
+		function()
+            awful.spawn("maim -s | xclip -selection clipboard -t image/png")
+		end,
+		{
+			description = "Take screenshot to clipboard",
 			group = "client"
 		}
 	),
@@ -148,7 +169,7 @@ globalkeys = gears.table.join(
 		{ modkey },
 		"Return",
 		function()
-			awful.spawn(terminal)
+			awful.spawn(terminal .. " readhumblegoalforthisweek")
 		end,
 		{
 			description = "open a terminal",

@@ -127,4 +127,4 @@ awful.spawn.with_line_callback('dbusbattery', {
 		end
     end
 })
--- require("slick.sidebar")
+awful.spawn.with_shell("picom")
