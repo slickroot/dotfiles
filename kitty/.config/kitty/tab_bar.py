@@ -1,11 +1,14 @@
 import datetime
 import random
 
-from kitty.fast_data_types import Screen
+from kitty.fast_data_types import Screen, get_options
 from kitty.rgb import Color
 from kitty.tab_bar import DrawData, ExtraData, TabBarData, as_rgb, draw_title
 from kitty.utils import color_as_int
 
+opts = get_options()
+ICON_BG: int = as_rgb(color_as_int(opts.background))
+TAB_ACTIVE_BG: int = color_as_int(opts.background)
 
 def calc_draw_spaces(*args) -> int:
     length = 0
@@ -19,12 +22,12 @@ def calc_draw_spaces(*args) -> int:
 def _draw_icon(screen: Screen, index: int, symbol: str = " LEI ") -> int:
     if index != 1:
         return
-
-    fg, bg = screen.cursor.fg, screen.cursor.bg
-    screen.cursor.fg = as_rgb(color_as_int(Color(233, 73, 87)))
-    screen.cursor.bg = as_rgb(color_as_int(Color(29, 31, 40)))
+    bg = screen.cursor.bg
+    screen.cursor.bg = ICON_BG
+    
     screen.draw(symbol)
-    screen.cursor.fg, screen.cursor.bg = fg, bg
+    screen.cursor.bg = bg
+
     screen.cursor.x = len(symbol)
     return screen.cursor.x
 
@@ -70,8 +73,7 @@ def draw_tab(
     is_last: bool,
     extra_data: ExtraData,
 ) -> int:
-    hearts = (" 💙  ", " 💚  ", " 💛  ", " 💜  ", " ❤️ ")
-    _draw_icon(screen, index, symbol=random.choice(hearts))
+    _draw_icon(screen, index, symbol=" ❤️ ")
     _draw_left_status(
         draw_data,
         screen,
