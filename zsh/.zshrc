@@ -1,3 +1,6 @@
+# fuzzy
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # Plugins
 source ~/.zsh/git-prompt.zsh/git-prompt.zsh
 source ~/.zsh/vi-mode.zsh/vi-mode.zsh
@@ -18,6 +21,7 @@ PATH=$PATH:$HOME/bin:$HOME/.local/bin
 
 # Completion
 autoload -U compinit && compinit
+autoload -U bashcompinit && bashcompinit
 
 # History Configuration
 HISTSIZE=5000
@@ -45,8 +49,6 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 
 export AWS_MFA_DEVICE_ARN=arn:aws:iam::042502209102:mfa/elaich
 
-alias kitty="kitty ~/.local/bin/readhumblegoalforthisweek"
-
 notify-deploy-completed() {
   osascript -e 'display notification "Done deploying or something went wrong 😀"'
 }
@@ -62,3 +64,22 @@ deploy-develop() {
   deploy heroku-develop --force
 }
 export PATH="/home/marouane/.ebcli-virtual-env/executables:$PATH"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/marouane/tmp/google-cloud-sdk/path.zsh.inc' ]; then . '/home/marouane/tmp/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/marouane/tmp/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/marouane/tmp/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Deno
+export DENO_INSTALL="/home/marouane/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+export DVM_DIR="/home/marouane/.dvm"
+export PATH="$DVM_DIR/bin:$PATH"
+
+# linode-cli autocomplete
+source ~/.zsh/completions/linode-cli.sh
+
+
+# LKE
+export KUBECONFIG=$HOME/.kube/automation-bros.kubeconfig.yaml
