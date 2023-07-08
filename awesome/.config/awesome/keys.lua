@@ -169,7 +169,7 @@ globalkeys = gears.table.join(
 		{ modkey },
 		"Return",
 		function()
-			awful.spawn(terminal .. " readhumblegoalforthisweek")
+			awful.spawn(terminal)
 		end,
 		{
 			description = "open a terminal",
