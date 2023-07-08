@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/marouane/work/bbauto/monkey'
+let g:netrw_dirhist_6='/home/marouane/tmp/result/src'
+let g:netrw_dirhist_5='/home/marouane/tmp/app/AppImport-v2/sample/src'
+let g:netrw_dirhist_4='/home/marouane/tmp/app/AppImport-v2/sample'
+let g:netrw_dirhist_3='/home/marouane/work/nursefly-iq'
+let g:netrw_dirhist_2='/home/marouane/work/web/server'
+let g:netrw_dirhist_1='/home/marouane/work/web/server/config'

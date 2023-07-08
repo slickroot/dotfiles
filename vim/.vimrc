@@ -1,4 +1,9 @@
+" Load all plugins now.
+" Plugins need to be added to runtimepath before helptags can be generated.
 packloadall
+" Load all of the helptags now, after plugins have been loaded.
+" All messages and errors will be ignored.
+silent! helptags ALL
 
 set encoding=utf8
 filetype plugin indent on
@@ -25,8 +30,8 @@ set clipboard=unnamedplus
 " indentation
 set autoindent
 set smartindent
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set noexpandtab
 
 " search
@@ -53,3 +58,4 @@ nnoremap <Leader>c :bd<CR>
 
 " Marouane magic
 source ~/.vim/marogic.vim
+source ~/.vim/functions.vim

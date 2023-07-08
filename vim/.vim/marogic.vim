@@ -1,6 +1,9 @@
 " ALE
 nmap <Leader>a :ALEFix<CR>
 
+" Esc
+imap jk <Esc>
+
 " Black
 nmap <Leader>b :Black<CR>
 " autocmd BufWritePre *.py execute ':Black'
@@ -30,8 +33,17 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 autocmd BufWritePost ~/.Xresources.d/colors :silent exec "!xtokitty"
 
 " map fuzzy search
-nnoremap <Leader>o :GFiles<CR>
-nnoremap <Leader>o :GFiles!<CR>
+command! LS call fzf#run({ 'source': 'git ls-files --others --cached --exclude-standard', 'options': '--preview "bat --color=always {}"', 'sink': 'e', 'window': { 'width': 0.9, 'height': 0.8 } })
+nnoremap <Leader>o :LS<CR>
 
 " Vue
 let g:vim_vue_plugin_load_full_syntax = 1
+
+" fzf
+set rtp+=~/.fzf
+
+" coc
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
+" JSX and TSX
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
