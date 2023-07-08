@@ -47,6 +47,9 @@ highlight LineNr ctermfg=DarkGrey
 nnoremap J 5<c-e>
 nnoremap K 5<c-y>
 
+" Escape
+inoremap jk <ESC>
+
 " Close current buffer
 nnoremap <Leader>c :bd<CR>
 
