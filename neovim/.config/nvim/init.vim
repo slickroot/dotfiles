@@ -4,7 +4,7 @@ set encoding=utf8
 filetype plugin indent on
 
 " colors
-syntax enable
+syntax off
 colorscheme kanagawa
 
 " ui
