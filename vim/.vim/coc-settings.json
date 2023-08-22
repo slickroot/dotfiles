@@ -1,8 +1,7 @@
 {
 	"eslint.autoFixOnSave": true,
-	"tsserver.log": "verbose",
-	"tsserver.trace.server": "verbose",
+  "javascript.suggestionActions.enabled": false,
+  "tsserver.enable": true,
 	"tsserver.useLocalTsdk": true,
-	"workspace.rootPatterns": [".git", "deno.json"],
 	"python.jediEnabled": false
 }
