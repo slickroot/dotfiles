@@ -84,11 +84,13 @@ awful.screen.connect_for_each_screen(function(s)
             layout             = awful.layout.suit.max,
             master_fill_policy = "master_width_factor",
             gap_single_client  = true,
-            gap                = 20,
+            gap                = 40,
             screen             = s,
             selected           = true,
         })
     awful.tag.add("2", {
+            gap_single_client  = true,
+            gap                = 40,
             layout = awful.layout.suit.tile,
             screen = s
         })

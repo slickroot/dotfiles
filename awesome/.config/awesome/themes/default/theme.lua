@@ -7,7 +7,7 @@ local xrdb = beautiful.xresources.get_current_theme()
 
 local theme = {}
 
-theme.wallpaper = "~/.config/awesome/themes/default/background.png"
+theme.wallpaper = "~/.config/awesome/themes/default/green.png"
 
 -- Gaps
 theme.screen_margin = dpi(15)
