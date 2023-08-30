@@ -53,6 +53,9 @@ inoremap jk <ESC>
 " Close current buffer
 nnoremap <Leader>c :bd<CR>
 
+" Underline error
+highlight CocErrorHighlight guisp=#FE5F55 gui=undercurl
+
 " Marouane magic
 " source ~/.vim/marogic.vim
 " source ~/.vim/functions.vim
