@@ -5,7 +5,7 @@ require('telescope').setup({
 		theme = 'dropdown',
 	},
 	pickers = {
-		git_files = {
+		find_files = {
 			theme = 'dropdown',
 		},
 		buffers = {
@@ -15,7 +15,8 @@ require('telescope').setup({
 })
 
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>o', builtin.git_files, {})
+vim.keymap.set('n', '<leader>o', function() builtin.find_files({ hidden = true}) end, {})
+vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 
 -- Coc.nvim
 -- Make <CR> to accept selected completion item or notify coc.nvim to format
