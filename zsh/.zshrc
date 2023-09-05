@@ -83,3 +83,6 @@ source ~/.zsh/completions/linode-cli.sh
 
 # LKE
 export KUBECONFIG=$HOME/.kube/automation-bros.kubeconfig.yaml
+
+# User npm-global
+export PATH=~/.npm-global/bin:$PATH
