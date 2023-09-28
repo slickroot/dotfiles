@@ -15,6 +15,8 @@ EDITOR=vim
 # ls with colors
 alias ls='ls --color=always'
 alias x=exit
+alias vim=nvim
+alias node=$HOME/n/bin/node
 
 # Path
 PATH=$PATH:$HOME/bin:$HOME/.local/bin
@@ -86,3 +88,4 @@ export KUBECONFIG=$HOME/.kube/automation-bros.kubeconfig.yaml
 
 # User npm-global
 export PATH=~/.npm-global/bin:$PATH
+export N_PREFIX=$HOME/n
