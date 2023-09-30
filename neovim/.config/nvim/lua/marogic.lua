@@ -5,7 +5,7 @@ require('telescope').setup({
 		theme = 'dropdown',
 	},
 	pickers = {
-		find_files = {
+		git_files = {
 			theme = 'dropdown',
 		},
 		buffers = {
@@ -15,7 +15,7 @@ require('telescope').setup({
 })
 
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>o', function() builtin.find_files({ hidden = true}) end, {})
+vim.keymap.set('n', '<leader>o', function() builtin.git_files({ show_untracked = true}) end, {})
 vim.keymap.set('n', '<leader>b', builtin.buffers, {})
 
 -- Coc.nvim
