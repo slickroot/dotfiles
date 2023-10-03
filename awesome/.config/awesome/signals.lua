@@ -66,7 +66,7 @@ client.connect_signal("request::titlebars", function(c)
     }
 
     local maximize_button = wibox.widget {
-        markup = '<span color="' .. xrdb.color6 .. '44' .. '"></span>',
+        markup = '<span color="' .. xrdb.color6 .. '99' .. '"></span>',
         buttons = {
             awful.button({ }, 1, function()
                 c.maximized = not c.maximized
@@ -81,11 +81,11 @@ client.connect_signal("request::titlebars", function(c)
     end)
 
     maximize_button:connect_signal('mouse::leave', function(w) 
-        w.markup = '<span color="' .. xrdb.color6 .. '44' .. '"></span>'
+        w.markup = '<span color="' .. xrdb.color6 .. '99' .. '"></span>'
     end)
 
     local close_button = wibox.widget {
-        markup = '<span color="' .. xrdb.color4 .. '44' .. '"></span>',
+        markup = '<span color="' .. xrdb.color4 .. '99' .. '"></span>',
         buttons = {
             awful.button({ }, 1, function()
                 c:kill()
@@ -100,7 +100,7 @@ client.connect_signal("request::titlebars", function(c)
     end)
 
     close_button:connect_signal('mouse::leave', function(w) 
-        w.markup = '<span color="' .. xrdb.color4 .. '44' .. '"></span>'
+        w.markup = '<span color="' .. xrdb.color4 .. '99' .. '"></span>'
     end)
 
     awful.titlebar(c, { size = beautiful.titlebar_size }).widget = {
