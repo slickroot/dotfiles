@@ -8,6 +8,7 @@ from kitty.utils import color_as_int
 
 opts = get_options()
 ICON_BG: int = as_rgb(color_as_int(opts.background))
+ICON_FG: int = as_rgb(color_as_int(opts.color1))
 TAB_ACTIVE_BG: int = color_as_int(opts.background)
 
 def calc_draw_spaces(*args) -> int:
@@ -22,10 +23,13 @@ def calc_draw_spaces(*args) -> int:
 def _draw_icon(screen: Screen, index: int, symbol: str = " LEI ") -> int:
     if index != 1:
         return
+    fg = screen.cursor.fg
     bg = screen.cursor.bg
+    screen.cursor.fg = ICON_FG
     screen.cursor.bg = ICON_BG
     
     screen.draw(symbol)
+    screen.cursor.fg = fg
     screen.cursor.bg = bg
 
     screen.cursor.x = len(symbol)
@@ -73,7 +77,7 @@ def draw_tab(
     is_last: bool,
     extra_data: ExtraData,
 ) -> int:
-    _draw_icon(screen, index, symbol=" ❤️ ")
+    _draw_icon(screen, index, symbol="   ")
     _draw_left_status(
         draw_data,
         screen,
