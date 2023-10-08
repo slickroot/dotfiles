@@ -8,7 +8,7 @@ from kitty.utils import color_as_int
 
 opts = get_options()
 ICON_BG: int = as_rgb(color_as_int(opts.background))
-ICON_FG: int = as_rgb(color_as_int(opts.color1))
+ICON_FG: int = as_rgb(color_as_int(opts.color13))
 TAB_ACTIVE_BG: int = color_as_int(opts.background)
 
 def calc_draw_spaces(*args) -> int:
