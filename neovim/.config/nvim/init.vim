@@ -51,7 +51,9 @@ nnoremap K 5<c-y>
 inoremap jk <ESC>
 
 " Close current buffer
-nnoremap <Leader>c :bd<CR>
+nnoremap <Leader>c :bw<CR>
+" Close all buffers
+nnoremap <Leader>x :bufdo bw<CR>
 
 " Underline error
 highlight CocErrorHighlight guisp=#FE5F55 gui=undercurl
