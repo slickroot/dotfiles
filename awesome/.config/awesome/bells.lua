@@ -36,6 +36,12 @@ ruled.notification.connect_signal('request::rules', function()
 
     -- notifications icon rules
     ruled.notification.append_rule {
+        rule        = { app_name = 'timetrace' },
+        properties  = { icon = "", icon_color = xrdb.color9 }
+    }
+
+    -- notifications icon rules
+    ruled.notification.append_rule {
         rule        = { app_name = 'screenshot' },
         properties  = { icon = "", icon_color = xrdb.color2 }
     }
