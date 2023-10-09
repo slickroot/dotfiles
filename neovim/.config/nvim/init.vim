@@ -34,7 +34,7 @@ set ignorecase
 set smartcase
 
 " statusline
-set laststatus=1
+set laststatus=2
 
 " leader
 let mapleader = ","
