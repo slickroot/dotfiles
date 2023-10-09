@@ -89,3 +89,20 @@ export KUBECONFIG=$HOME/.kube/automation-bros.kubeconfig.yaml
 # User npm-global
 export PATH=~/.npm-global/bin:$PATH
 export N_PREFIX=$HOME/n
+
+# Some crazy stuff
+# Overriding the cd command
+cd() {
+  builtin cd "$@" && {  # Call the built-in cd command with all passed arguments
+    if [[ "$PWD" == "/home/marouane/work/EntrepreneursSite" ]]; then
+      PROJECT=`timetrace status --output json | jq -r '.project'`
+      if [[ $PROJECT == TurboFund ]]
+      then
+        echo "You are working"
+      else
+        timetrace start TurboFund
+        workreminder
+      fi
+    fi
+  }
+}
