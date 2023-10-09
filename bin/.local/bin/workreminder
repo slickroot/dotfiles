@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+PROJECT=`timetrace status --output json | jq -r '.project'`
+while [[ $PROJECT == TurboFund ]]
+do
+  notify-send -w --app-name=timetrace TimeTrace "are you still working?"
+  sleep 600 # 10 minutes
+  PROJECT=`timetrace status --output json | jq -r '.project'`
+done
