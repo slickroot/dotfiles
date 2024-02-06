@@ -1,8 +1,14 @@
 # fuzzy
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Completion
+autoload -U compinit && compinit
+autoload -U bashcompinit && bashcompinit
+
 # Plugins
+# source /usr/share/zsh/plugins/zsh-completions/zsh-completions.zsh
 source ~/.zsh/git-prompt.zsh/git-prompt.zsh
+source ~/.zsh/kubectl-autocomplete.zsh/kubectl-autocomplete.zsh
 source ~/.zsh/vi-mode.zsh/vi-mode.zsh
 
 
@@ -21,9 +27,6 @@ alias node=$HOME/n/bin/node
 # Path
 PATH=$PATH:$HOME/bin:$HOME/.local/bin
 
-# Completion
-autoload -U compinit && compinit
-autoload -U bashcompinit && bashcompinit
 
 # History Configuration
 HISTSIZE=5000
