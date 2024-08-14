@@ -77,7 +77,7 @@ def draw_tab(
     is_last: bool,
     extra_data: ExtraData,
 ) -> int:
-    _draw_icon(screen, index, symbol="   ")
+    _draw_icon(screen, index, symbol="   Leila   ")
     _draw_left_status(
         draw_data,
         screen,
