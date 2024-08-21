@@ -1,5 +1,5 @@
-WEB_HOME=$HOME/work/shora/shora-web
-API_HOME=$HOME/work/shora/shora-api
+WEB_HOME=$HOME/work/shora/web
+API_HOME=$HOME/work/shora/api
 
 kitty @ launch --type=os-window --cwd $WEB_HOME --tab-title "Web" --hold npm run dev
 kitty @ launch --type=tab --cwd $WEB_HOME --tab-title "Vim" --hold --keep-focus nvim 
