@@ -8,7 +8,6 @@ autoload -U bashcompinit && bashcompinit
 # Plugins
 # source /usr/share/zsh/plugins/zsh-completions/zsh-completions.zsh
 source ~/.zsh/git-prompt.zsh/git-prompt.zsh
-source ~/.zsh/kubectl-autocomplete.zsh/kubectl-autocomplete.zsh
 source ~/.zsh/vi-mode.zsh/vi-mode.zsh
 
 
@@ -81,10 +80,6 @@ export DENO_INSTALL="/home/marouane/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 export DVM_DIR="/home/marouane/.dvm"
 export PATH="$DVM_DIR/bin:$PATH"
-
-# linode-cli autocomplete
-source ~/.zsh/completions/linode-cli.sh
-
 
 # LKE
 export KUBECONFIG=$HOME/.kube/automation-bros.kubeconfig.yaml
