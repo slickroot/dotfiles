@@ -10,9 +10,13 @@ autoload -U bashcompinit && bashcompinit
 source ~/.zsh/git-prompt.zsh/git-prompt.zsh
 source ~/.zsh/vi-mode.zsh/vi-mode.zsh
 
-
 # Nice prompt
 PROMPT='%F{blue}%1~ $(gitprompt)$(vi_mode_status)'
+
+# Check the hostname and prepend if it's not "thinkpadx1"
+if [[ $(< /etc/hostname) != "thinkpadx1" ]]; then
+  PROMPT="(%F{yellow}$(< /etc/hostname)%f) $PROMPT"
+fi
 
 # What's your editor?
 EDITOR=vim
