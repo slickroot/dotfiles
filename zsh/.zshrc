@@ -9,6 +9,7 @@ autoload -U bashcompinit && bashcompinit
 # source /usr/share/zsh/plugins/zsh-completions/zsh-completions.zsh
 source ~/.zsh/git-prompt.zsh/git-prompt.zsh
 source ~/.zsh/vi-mode.zsh/vi-mode.zsh
+source ~/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Nice prompt
 PROMPT='%F{blue}%1~ $(gitprompt)$(vi_mode_status)'
@@ -26,6 +27,7 @@ alias ls='ls --color=always'
 alias x=exit
 alias vim=nvim
 alias node=$HOME/n/bin/node
+alias ssh='TERM=xterm ssh'
 
 # Path
 PATH=$PATH:$HOME/bin:$HOME/.local/bin
