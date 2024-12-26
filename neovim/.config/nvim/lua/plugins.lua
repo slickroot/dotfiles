@@ -1,5 +1,6 @@
 return require('packer').startup(function(use)
 	use 'rebelot/kanagawa.nvim'
+  use 'lervag/vimtex' -- LaTeX support
 	use 'nvim-lua/plenary.nvim'
 	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 	use {'neoclide/coc.nvim', branch = 'release'}

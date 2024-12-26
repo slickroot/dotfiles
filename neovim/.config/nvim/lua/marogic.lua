@@ -56,3 +56,7 @@ require'nvim-treesitter.configs'.setup {
 }
 
 vim.treesitter.language.register("bash", "zsh")
+
+-- VimTEX
+vim.g.vimtex_view_method = 'zathura' -- Use Zathura as the PDF viewer
+vim.g.vimtex_compiler_method = 'latexmk' -- Use latexmk for compilation
