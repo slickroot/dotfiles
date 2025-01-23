@@ -93,3 +93,12 @@ export KUBECONFIG=$HOME/.kube/automation-bros.kubeconfig.yaml
 # User npm-global
 export PATH=~/.npm-global/bin:$PATH
 export N_PREFIX=$HOME/n
+
+# TeX Live paths
+export PATH="/usr/local/texlive/2024/bin/x86_64-linux:$PATH"
+export MANPATH="/usr/local/texlive/2024/texmf-dist/doc/man:$MANPATH"
+export INFOPATH="/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH"
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
