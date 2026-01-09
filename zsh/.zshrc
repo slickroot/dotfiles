@@ -102,3 +102,12 @@ export INFOPATH="/usr/local/texlive/2024/texmf-dist/doc/info:$INFOPATH"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
+
+source <(kubectl completion zsh)
+compdef _kubectl kubectl
+export PATH="$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"
+
+alias ssm_staging="aws ssm start-session --target i-0983fd91609ddec61 --region us-east-1" 
+alias ssm_sn51_server="aws ssm start-session --target i-0e28f335a9f6f9829 --region us-east-1"
+alias ssm_sn51_validator="aws ssm start-session --target i-0ded363a0d221b7bd --region us-east-1"
+alias ssm_sn51_paytao="aws ssm start-session --target i-0784dd56a6643d15d --region us-east-1"

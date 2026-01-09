@@ -1,5 +1,7 @@
 {
   "tsserver.log": "verbose",
   "tsserver.trace.server": "verbose",
-  "tsserver.enable": true
+  "tsserver.enable": true,
+  "pyright.inlayHints.variableTypes": false,
+  "pyright.inlayHints.parameterTypes": false
 }
