@@ -45,17 +45,20 @@ require('lualine').setup {
   }
 }
 
--- Tree Sitter 
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "javascript", "vue" },
-
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
+-- Tree Sitter
+-- bash is here so the zsh registration below has a parser to use
+require('nvim-treesitter').install {
+  'c', 'lua', 'vim', 'vimdoc', 'query', 'javascript', 'vue', 'bash',
 }
 
-vim.treesitter.language.register("bash", "zsh")
+vim.treesitter.language.register('bash', 'zsh')
+
+-- highlighting comes from neovim itself now, it is not enabled by the plugin
+vim.api.nvim_create_autocmd('FileType', {
+  -- filetypes, not parser names: vimdoc is the 'help' filetype
+  pattern = { 'c', 'lua', 'vim', 'help', 'query', 'javascript', 'vue', 'sh', 'zsh' },
+  callback = function() vim.treesitter.start() end,
+})
 
 -- VimTEX
 vim.g.vimtex_view_method = 'zathura' -- Use Zathura as the PDF viewer

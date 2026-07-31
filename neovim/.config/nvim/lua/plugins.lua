@@ -43,10 +43,10 @@ require('lazy').setup({
 		dependencies = { 'nvim-lua/plenary.nvim' },
 	},
 	{
+		-- main branch: needs nvim >= 0.12 and the tree-sitter CLI
 		'nvim-treesitter/nvim-treesitter',
-		-- main is the rewrite and drops nvim-treesitter.configs, which
-		-- marogic.lua still uses
-		branch = 'master',
+		branch = 'main',
+		lazy = false, -- upstream does not support lazy-loading this one
 		build = ':TSUpdate',
 	},
 	{
