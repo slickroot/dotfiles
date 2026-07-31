@@ -100,6 +100,11 @@ _G.packer_plugins = {
     path = "/Users/slickroot/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
+  ["packer.nvim"] = {
+    loaded = true,
+    path = "/Users/slickroot/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    url = "https://github.com/wbthomason/packer.nvim"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "/Users/slickroot/.local/share/nvim/site/pack/packer/start/plenary.nvim",
