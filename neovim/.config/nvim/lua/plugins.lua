@@ -38,8 +38,10 @@ require('lazy').setup({
 		dependencies = { 'nvim-lua/plenary.nvim' },
 	},
 	{
+		-- master, not 0.1.x: the older branch previews files through
+		-- nvim-treesitter.parsers, which the treesitter rewrite removed
 		'nvim-telescope/telescope.nvim',
-		branch = '0.1.x',
+		branch = 'master',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 	},
 	{
