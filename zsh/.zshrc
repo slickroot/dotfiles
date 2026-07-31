@@ -19,7 +19,7 @@ EDITOR=vim
 
 alias x=exit
 alias vim=nvim
-alias node=$HOME/n/bin/node
+[ -x "$HOME/n/bin/node" ] && alias node=$HOME/n/bin/node
 alias ssh='TERM=xterm ssh'
 
 # Path
@@ -70,7 +70,7 @@ export PATH="$N_PREFIX/bin:$PATH"
 
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init - zsh)"
+(( $+commands[pyenv] )) && eval "$(pyenv init - zsh)"
 
 alias ssm_staging="aws ssm start-session --target i-0983fd91609ddec61 --region us-east-1" 
 alias ssm_sn51_server="aws ssm start-session --target i-0e28f335a9f6f9829 --region us-east-1"

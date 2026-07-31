@@ -3,8 +3,11 @@
 # ls with colors (GNU ls)
 alias ls='ls --color=always'
 
-# Hostname in prompt if not main machine
-if [[ $(< /etc/hostname) != "thinkpadx1" ]]; then
+# Machine badge in prompt if not the main machine.
+# Put a friendly name in ~/.hostlabel (e.g. "vps") to override the raw hostname.
+if [[ -r ~/.hostlabel ]]; then
+  PROMPT="%K{red}%F{white} $(< ~/.hostlabel) %f%k $PROMPT"
+elif [[ $(< /etc/hostname) != "thinkpadx1" ]]; then
   PROMPT="(%F{yellow}$(< /etc/hostname)%f) $PROMPT"
 fi
 
