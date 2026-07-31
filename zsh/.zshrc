@@ -87,3 +87,10 @@ if [[ "$OSTYPE" == darwin* ]]; then
 elif [[ "$OSTYPE" == linux* ]]; then
   source ~/.zshrc.linux
 fi
+
+# Agents Project
+# viraltwitter
+alias today='ssh -i ~/.ssh/viraltwitter_deploy root@152.42.205.36 "cd ~/viraltwitter && /root/.local/bin/uv run python cli.py today"'
+
+# Claude
+alias claude='claude --tools "Agent,Read,Write,Bash,Edit,WebSearch"'
