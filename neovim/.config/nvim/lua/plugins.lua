@@ -1,4 +1,5 @@
 return require('packer').startup(function(use)
+	use 'folke/tokyonight.nvim'
 	use 'rebelot/kanagawa.nvim'
   use 'lervag/vimtex' -- LaTeX support
 	use 'nvim-lua/plenary.nvim'

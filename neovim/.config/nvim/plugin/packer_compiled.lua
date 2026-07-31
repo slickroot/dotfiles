@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/marouane/.cache/nvim/packer_hererocks/2.1.1723675123/share/lua/5.1/?.lua;/home/marouane/.cache/nvim/packer_hererocks/2.1.1723675123/share/lua/5.1/?/init.lua;/home/marouane/.cache/nvim/packer_hererocks/2.1.1723675123/lib/luarocks/rocks-5.1/?.lua;/home/marouane/.cache/nvim/packer_hererocks/2.1.1723675123/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/marouane/.cache/nvim/packer_hererocks/2.1.1723675123/lib/lua/5.1/?.so"
+local package_path_str = "/Users/slickroot/.cache/nvim/packer_hererocks/2.1.1762386122/share/lua/5.1/?.lua;/Users/slickroot/.cache/nvim/packer_hererocks/2.1.1762386122/share/lua/5.1/?/init.lua;/Users/slickroot/.cache/nvim/packer_hererocks/2.1.1762386122/lib/luarocks/rocks-5.1/?.lua;/Users/slickroot/.cache/nvim/packer_hererocks/2.1.1762386122/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/slickroot/.cache/nvim/packer_hererocks/2.1.1762386122/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -76,53 +76,58 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["coc.nvim"] = {
     loaded = true,
-    path = "/home/marouane/.local/share/nvim/site/pack/packer/start/coc.nvim",
+    path = "/Users/slickroot/.local/share/nvim/site/pack/packer/start/coc.nvim",
     url = "https://github.com/neoclide/coc.nvim"
   },
   ["kanagawa.nvim"] = {
     loaded = true,
-    path = "/home/marouane/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
+    path = "/Users/slickroot/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
     url = "https://github.com/rebelot/kanagawa.nvim"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/home/marouane/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    path = "/Users/slickroot/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/home/marouane/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    path = "/Users/slickroot/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = false,
     needs_bufread = false,
-    path = "/home/marouane/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
+    path = "/Users/slickroot/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
     url = "https://github.com/nvim-tree/nvim-web-devicons"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/home/marouane/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    path = "/Users/slickroot/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
-    path = "/home/marouane/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
+    path = "/Users/slickroot/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/home/marouane/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    path = "/Users/slickroot/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/Users/slickroot/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
   ["vgit.nvim"] = {
     loaded = true,
-    path = "/home/marouane/.local/share/nvim/site/pack/packer/start/vgit.nvim",
+    path = "/Users/slickroot/.local/share/nvim/site/pack/packer/start/vgit.nvim",
     url = "https://github.com/tanvirtin/vgit.nvim"
   },
   vimtex = {
     loaded = true,
-    path = "/home/marouane/.local/share/nvim/site/pack/packer/start/vimtex",
+    path = "/Users/slickroot/.local/share/nvim/site/pack/packer/start/vimtex",
     url = "https://github.com/lervag/vimtex"
   }
 }

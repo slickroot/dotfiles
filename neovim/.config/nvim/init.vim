@@ -5,7 +5,7 @@ filetype plugin indent on
 
 " colors
 syntax off
-colorscheme kanagawa
+colorscheme tokyonight-night
 
 " ui
 set noshowmode
