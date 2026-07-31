@@ -32,3 +32,12 @@ if [ -f "$HOME/tmp/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/tmp/goo
 
 # EB CLI
 export PATH="$HOME/.ebcli-virtual-env/executables:$PATH"
+
+# kubectl completion
+if (( $+commands[kubectl] )); then
+  source <(kubectl completion zsh)
+  compdef _kubectl kubectl
+fi
+
+# Ruby gems
+export PATH="$HOME/.local/share/gem/ruby/3.4.0/bin:$PATH"
