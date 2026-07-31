@@ -4,8 +4,9 @@ set encoding=utf8
 filetype plugin indent on
 
 " colors
+" the colorscheme itself is set by lazy.nvim in lua/plugins.lua, since the
+" plugin is not on the runtimepath yet at this point
 syntax off
-colorscheme tokyonight-night
 
 " ui
 set noshowmode
@@ -41,7 +42,6 @@ let mapleader = ","
 
 " line numbers
 set number relativenumber
-highlight LineNr ctermfg=DarkGrey
 
 " Scrolling
 nnoremap J 5<c-e>
@@ -54,9 +54,6 @@ inoremap jk <ESC>
 nnoremap <Leader>c :bw<CR>
 " Close all buffers
 nnoremap <Leader>x :bufdo bw<CR>
-
-" Underline error
-highlight CocErrorHighlight guisp=#FE5F55 gui=undercurl
 
 " ENV files
 autocmd BufRead,BufNewFile .env,.env.* setfiletype sh

@@ -1,48 +1,62 @@
--- Clone packer itself on a fresh machine, otherwise this file blows up
-local ensure_packer = function()
-	local fn = vim.fn
-	local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-		vim.cmd [[packadd packer.nvim]]
-		return true
+-- Clone lazy.nvim itself on a fresh machine, otherwise this file blows up
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local out = vim.fn.system({
+		'git', 'clone', '--filter=blob:none', '--branch=stable',
+		'https://github.com/folke/lazy.nvim.git', lazypath,
+	})
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
+			{ out, 'WarningMsg' },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
 	end
-	return false
 end
+vim.opt.rtp:prepend(lazypath)
 
-local packer_bootstrap = ensure_packer()
-
-return require('packer').startup(function(use)
-	use 'wbthomason/packer.nvim'
-	use 'folke/tokyonight.nvim'
-	use 'rebelot/kanagawa.nvim'
-  use 'lervag/vimtex' -- LaTeX support
-	use 'nvim-lua/plenary.nvim'
-	use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-	use {'neoclide/coc.nvim', branch = 'release'}
-	use {
+require('lazy').setup({
+	{
+		'folke/tokyonight.nvim',
+		lazy = false,
+		priority = 1000, -- load before everything else so the colorscheme is up early
+		config = function()
+			vim.cmd.colorscheme('tokyonight-night')
+			-- colorscheme resets highlights, so our overrides go after it
+			vim.cmd('highlight LineNr ctermfg=DarkGrey')
+			vim.cmd('highlight CocErrorHighlight guisp=#FE5F55 gui=undercurl')
+		end,
+	},
+	'rebelot/kanagawa.nvim',
+	'lervag/vimtex', -- LaTeX support
+	'nvim-lua/plenary.nvim',
+	{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+	{ 'neoclide/coc.nvim', branch = 'release' },
+	{
 		'tanvirtin/vgit.nvim',
-		requires = {
-			'nvim-lua/plenary.nvim'
-		}
-	}
-	use {
-		'nvim-telescope/telescope.nvim', branch = '0.1.x',
-		requires = { {'nvim-lua/plenary.nvim'} }
-	}
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function()
-      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-      ts_update()
-    end,
-  }
-  use {
-    'nvim-lualine/lualine.nvim',
-    requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-  }
-
-	if packer_bootstrap then
-		require('packer').sync()
-	end
-end)
+		dependencies = { 'nvim-lua/plenary.nvim' },
+	},
+	{
+		'nvim-telescope/telescope.nvim',
+		branch = '0.1.x',
+		dependencies = { 'nvim-lua/plenary.nvim' },
+	},
+	{
+		'nvim-treesitter/nvim-treesitter',
+		-- main is the rewrite and drops nvim-treesitter.configs, which
+		-- marogic.lua still uses
+		branch = 'master',
+		build = ':TSUpdate',
+	},
+	{
+		'nvim-lualine/lualine.nvim',
+		dependencies = { 'nvim-tree/nvim-web-devicons' },
+	},
+}, {
+	-- everything is configured in marogic.lua, which runs right after this,
+	-- so plugins load eagerly rather than on demand
+	defaults = { lazy = false },
+	install = { colorscheme = { 'tokyonight-night' } },
+	change_detection = { notify = false },
+})
