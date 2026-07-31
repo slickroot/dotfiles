@@ -58,6 +58,9 @@ nnoremap <Leader>x :bufdo bw<CR>
 " Underline error
 highlight CocErrorHighlight guisp=#FE5F55 gui=undercurl
 
+" ENV files
+autocmd BufRead,BufNewFile .env,.env.* setfiletype sh
+
 " Marouane magic
 " source ~/.vim/marogic.vim
 " source ~/.vim/functions.vim
