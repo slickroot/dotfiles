@@ -6,7 +6,9 @@ filetype plugin indent on
 " colors
 " the colorscheme itself is set by lazy.nvim in lua/plugins.lua, since the
 " plugin is not on the runtimepath yet at this point
-syntax off
+" regex syntax stays on as the fallback: treesitter only covers the filetypes
+" it has a parser for, and it turns syntax off per buffer where it takes over
+syntax enable
 
 " ui
 set noshowmode

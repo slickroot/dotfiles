@@ -48,16 +48,25 @@ require('lualine').setup {
 -- Tree Sitter
 -- bash is here so the zsh registration below has a parser to use
 require('nvim-treesitter').install {
-  'c', 'lua', 'vim', 'vimdoc', 'query', 'javascript', 'vue', 'bash',
+  'c', 'lua', 'vim', 'vimdoc', 'query', 'bash', 'vue',
+  'javascript', 'jsdoc', 'typescript', 'tsx',
+  'json', 'html', 'css', 'scss',
+  'markdown', 'markdown_inline', 'python', 'yaml', 'toml', 'diff',
 }
 
 vim.treesitter.language.register('bash', 'zsh')
 
--- highlighting comes from neovim itself now, it is not enabled by the plugin
+-- highlighting comes from neovim itself now, it is not enabled by the plugin.
+-- keyed off whatever parser is actually installed rather than a hand-kept
+-- filetype list, so adding a parser above is enough; when there is no parser
+-- start() fails and the buffer keeps vim's regex syntax
 vim.api.nvim_create_autocmd('FileType', {
-  -- filetypes, not parser names: vimdoc is the 'help' filetype
-  pattern = { 'c', 'lua', 'vim', 'help', 'query', 'javascript', 'vue', 'sh', 'zsh' },
-  callback = function() vim.treesitter.start() end,
+  callback = function(args)
+    local lang = vim.treesitter.language.get_lang(args.match)
+    if lang then
+      pcall(vim.treesitter.start, args.buf, lang)
+    end
+  end,
 })
 
 -- VimTEX
